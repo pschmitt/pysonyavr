@@ -147,7 +147,6 @@ class SonyAvr(object):
         '''
         return sorted([x.get('title') for x in self.get_inputs('extInput')])
 
-
     @property
     def volume(self):
         '''
@@ -335,11 +334,16 @@ class SonyAvr(object):
         '''
         Convert a source URI to a human-readable name
         '''
+        # Remove port indication for audio in
         match = re.match(r'(.+)\?port=\d+', uri)
         if match:
             uri = match.group(1)
-        for source_info in self.get_all_inputs():
-            if uri.lower() == source_info.get('source', '').lower():
+        # Dirtyfix for typos in HDMI output URI ("exInput" instead of
+        # "extInput")
+        alt_uri = uri.replace('extInput', 'exInput')
+        all_inputs = self.get_all_inputs()
+        for source_info in all_inputs:
+            if source_info.get('source', '') in [uri, alt_uri]:
                 return source_info.get('title')
 
     def _get_input_uri(self, source):
