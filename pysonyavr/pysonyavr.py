@@ -338,3 +338,8 @@ class SonyAvr(object):
                 # FIXME There may be more than one AUX port
                 if lsource == 'audio in':
                     return uri + '?port=1'
+                # Fix typos
+                match = re.match('exInput:(.*)', uri)
+                if match:
+                    return 'extInput:{}'.format(match.group(1))
+                return uri
