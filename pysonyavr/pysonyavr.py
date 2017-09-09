@@ -141,6 +141,14 @@ class SonyAvr(object):
         return sorted([x.get('title') for x in self.get_all_inputs()])
 
     @property
+    def ext_inputs(self):
+        '''
+        List of available external input sources
+        '''
+        return sorted([x.get('title') for x in self.get_inputs('extInput')])
+
+
+    @property
     def volume(self):
         '''
         Current volume level
