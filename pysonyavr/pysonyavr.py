@@ -148,6 +148,13 @@ class SonyAvr(object):
         return self.get_volume_info().get('volume')
 
     @property
+    def volume_percent(self):
+        '''
+        Current volume level (in %)
+        '''
+        return float(self.volume / self.max_volume)
+
+    @property
     def min_volume(self):
         '''
         Minimum volume level
