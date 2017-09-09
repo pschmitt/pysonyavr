@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name='pysonyavr',
-    version='1.3',
+    version='1.4',
     license='GPL3',
     description='Python bindings for modern Sony speakers',
     long_description=read('README.rst'),
